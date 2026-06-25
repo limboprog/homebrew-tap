@@ -12,15 +12,13 @@ class Tasedeck < Formula
   end
 
 def install
-    # Поскольку внутри архива лежит ТОЛЬКО само приложение, 
-    # этот код теперь сработает со 100% гарантией!
-    prefix.install "TaseDeck.app"
-  end
-
-  def caveats
-    <<~EOS
-      TaseDeck was successfully installed into your Applications folder!
-    EOS
+    # Выводим в терминал список ВСЕХ файлов и папок, которые распаковались
+    all_files = Dir["**/*"]
+    opoo "ВНУТРИ АРХИВА ЛЕЖИТ ВОТ ЧТО: #{all_files.inspect}"
+    
+    # Чтобы Брю не падал, просто создадим пустой файл для вида
+    touch "dummy"
+    bin.install "dummy"
   end
 end
 
