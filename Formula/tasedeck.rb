@@ -12,9 +12,15 @@ class Tasedeck < Formula
   end
 
 def install
-    # Поскольку внутри архива лежит ТОЛЬКО само приложение, 
-    # этот код теперь сработает со 100% гарантией!
-    prefix.install "TaseDeck.app"
+    # Находим любую папку, которая заканчивается на .app, как бы она ни называлась
+    app_path = Dir["*.app"].first
+
+    if app_path.nil?
+      raise "Не удалось найти файл .app внутри распакованного архива!"
+    end
+
+    # Устанавливаем именно то, что нашли
+    prefix.install app_path
   end
 
   def caveats
