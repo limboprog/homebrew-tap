@@ -12,13 +12,18 @@ class Tasedeck < Formula
   end
 
 def install
-    # Выводим в терминал список ВСЕХ файлов и папок, которые распаковались
-    all_files = Dir["**/*"]
-    opoo "ВНУТРИ АРХИВА ЛЕЖИТ ВОТ ЧТО: #{all_files.inspect}"
-    
-    # Чтобы Брю не падал, просто создадим пустой файл для вида
-    touch "dummy"
-    bin.install "dummy"
+    # 1. Создаем правильную структуру папки .app внутри директории Homebrew
+    (prefix/"TaseDeck.app").install "Contents"
+
+    # 2. Делаем бинарники внутри приложения исполняемыми на всякий случай
+    chmod 0755, prefix/"TaseDeck.app/Contents/MacOS/tase_deck"
+    chmod 0755, prefix/"TaseDeck.app/Contents/MacOS/market-probe"
+  end
+
+  def caveats
+    <<~EOS
+      TaseDeck was successfully installed into your Applications folder!
+    EOS
   end
 end
 
