@@ -12,7 +12,7 @@ class Tasedeck < Formula
   end
 
   def install
-    prefix.install "TaseDeck.app"
+    prefix.install "TaseDeck"
   end
 
   def caveats
