@@ -12,12 +12,17 @@ class Tasedeck < Formula
   end
 
   def install
-    prefix.install "TaseDeck"
-  end
-
-  def caveats
-    <<~EOS
-      TaseDeck was successfully installed into your Applications folder!
-    EOS
+    # Этот код принудительно выведет в терминал всё, что Брю нашёл внутри диска
+    files = Dir["*"]
+    opoo "Внутри DMG диска лежат файлы: #{files.inspect}"
+    
+    # Пытаемся взять первый попавшийся файл, чтобы Брю хоть что-то установил
+    target = files.first
+    if target.nil?
+      raise "Диск абсолютно пустой!"
+    end
+    
+    prefix.install target
   end
 end
+
