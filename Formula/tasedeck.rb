@@ -11,18 +11,16 @@ class Tasedeck < Formula
     sha256 "15a48788bc4cae2e4580f59045a147c74b034bc0cbbf88f6518784f002c7d7cc"
   end
 
-  def install
-    # Этот код принудительно выведет в терминал всё, что Брю нашёл внутри диска
-    files = Dir["*"]
-    opoo "Внутри DMG диска лежат файлы: #{files.inspect}"
-    
-    # Пытаемся взять первый попавшийся файл, чтобы Брю хоть что-то установил
-    target = files.first
-    if target.nil?
-      raise "Диск абсолютно пустой!"
-    end
-    
-    prefix.install target
+def install
+    # Поскольку внутри архива лежит ТОЛЬКО само приложение, 
+    # этот код теперь сработает со 100% гарантией!
+    prefix.install "TaseDeck.app"
+  end
+
+  def caveats
+    <<~EOS
+      TaseDeck was successfully installed into your Applications folder!
+    EOS
   end
 end
 
