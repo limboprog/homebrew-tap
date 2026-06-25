@@ -4,11 +4,11 @@ class Tasedeck < Formula
   version "0.1.0-alpha"
 
   if Hardware::CPU.intel?
-    url "https://github.com/limboprog/TaseDeck/releases/download/v0.1.0-alpha/TaseDeck_0.1.0_x64.dmg"
-    sha256 "02af637bfb06ac0cf07163b39ad9e1d5526cf57fa8f2c846d97161d1c84b1efb"
+    url "https://github.com/limboprog/TaseDeck/releases/download/v0.1.0-alpha/TaseDeck_x64.app.tar.gz"
+    sha256 "27b18cfda8c93364c53e2b8882318df4a097962a86eac4c5c0bac83dbe88a112"
   elsif Hardware::CPU.arm?
-    url "https://github.com/limboprog/TaseDeck/releases/download/v0.1.0-alpha/TaseDeck_0.1.0_aarch64.dmg"
-    sha256 "15a48788bc4cae2e4580f59045a147c74b034bc0cbbf88f6518784f002c7d7cc"
+    url "https://github.com/limboprog/TaseDeck/releases/download/v0.1.0-alpha/TaseDeck_aarch64.app.tar.gz"
+    sha256 "6e664fca1b59814d82aa6add6fcf1648be407864c77b48419d5e25937efcdb1c"
   end
 
 def install
