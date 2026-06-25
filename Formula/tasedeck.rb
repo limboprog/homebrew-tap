@@ -12,18 +12,21 @@ class Tasedeck < Formula
   end
 
 def install
-    # 1. Создаем правильную структуру папки .app внутри директории Homebrew
     (prefix/"TaseDeck.app").install "Contents"
+  end
 
-    # 2. Делаем бинарники внутри приложения исполняемыми на всякий случай
-    chmod 0755, prefix/"TaseDeck.app/Contents/MacOS/tase_deck"
-    chmod 0755, prefix/"TaseDeck.app/Contents/MacOS/market-probe"
+  # Этот блок заставит Homebrew связать приложение с папкой Программы
+  def post_install
+    app_dir = "/Applications"
+    if File.exist?(app_dir) && !File.exist?("#{app_dir}/TaseDeck.app")
+      ln_sf "#{prefix}/TaseDeck.app", app_dir
+    end
   end
 
   def caveats
     <<~EOS
-      TaseDeck was successfully installed into your Applications folder!
+      TaseDeck.app was linked to your /Applications folder!
+      You can now launch it from Finder or Launchpad.
     EOS
   end
 end
-
