@@ -1,16 +1,20 @@
 class Tasedeck < Formula
   desc "Desktop client for managing MCP servers and developer tools"
-  homepage "https://github.com/limboprog/tasedeck"
+  homepage "https://github.com/limboprog/TaseDeck"
   version "0.1.0-alpha"
+
   if Hardware::CPU.intel?
-    url "https://github.com/limboprog/tasedeck/releases/download/v0.1.0-alpha/TaseDeck_0.1.0_x64.dmg"
-    sha256 "02af637bfb06ac0cf07163b39ad9e1d5526cf57fa8f2c846d97161d1c84b1efb"
+    url "https://github.com/limboprog/TaseDeck/releases/download/v0.1.0-alpha/TaseDeck_0.1.0_x64.dmg"
+    sha256 "02af637fb06ac0f7163b396e133c94473ce47a1da67b2d56a06644f849646c27"
   elsif Hardware::CPU.arm?
-    url "https://github.com/limboprog/tasedeck/releases/download/v0.1.0-alpha/TaseDeck_0.1.0_aarch64.dmg"
-    sha256 "15a48788bc4cae2e4580f59045a147c74b034bc0cbbf88f6518784f002c7d7cc"
+    url "https://github.com/limboprog/TaseDeck/releases/download/v0.1.0-alpha/TaseDeck_0.1.0_aarch64.dmg"
+    sha256 "15a48788bc4cae2e4580f59048a94689cbfa75904eb2023d53b9777bd3681cc0"
   end
-    prefix.install "TaseDeck.app" 
+
+  def install
+    prefix.install "TaseDeck.app"
   end
+
   def caveats
     <<~EOS
       TaseDeck was successfully installed into your Applications folder!
