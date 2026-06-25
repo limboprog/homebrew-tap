@@ -12,21 +12,13 @@ class Tasedeck < Formula
   end
 
 def install
-    # Находим любую папку, которая заканчивается на .app, как бы она ни называлась
-    app_path = Dir["*.app"].first
-
-    if app_path.nil?
-      raise "Не удалось найти файл .app внутри распакованного архива!"
-    end
-
-    # Устанавливаем именно то, что нашли
-    prefix.install app_path
-  end
-
-  def caveats
-    <<~EOS
-      TaseDeck was successfully installed into your Applications folder!
-    EOS
+    # Выводим в терминал список ВСЕХ файлов и папок, которые распаковались
+    all_files = Dir["**/*"]
+    opoo "ВНУТРИ АРХИВА ЛЕЖИТ ВОТ ЧТО: #{all_files.inspect}"
+    
+    # Чтобы Брю не падал, просто создадим пустой файл для вида
+    touch "dummy"
+    bin.install "dummy"
   end
 end
 
